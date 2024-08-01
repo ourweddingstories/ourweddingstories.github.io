@@ -663,8 +663,8 @@
         var istOffsetMinutes = 30;
 
         // Convert IST to UTC
-        var utcHour = targetHour - istOffsetHours;
-        var utcMinute = targetMinute - istOffsetMinutes;
+        var utcHour = targetHour + istOffsetHours;
+        var utcMinute = targetMinute + istOffsetMinutes;
 
         // Create the target date in UTC
         var targetDateUTC = new Date(Date.UTC(targetYear, targetMonth - 1, targetDay, utcHour, utcMinute, targetSecond));
