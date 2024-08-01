@@ -650,23 +650,47 @@
 	<script src="js/main.js"></script>
 
 	<script>
-    var d = new Date(2024, 12, 15);
+        // Define the target date and time in IST
+        var targetYear = 2024;
+        var targetMonth = 12; // December
+        var targetDay = 15;
+        var targetHour = 0;   // Midnight (00:00 IST)
+        var targetMinute = 0;
+        var targetSecond = 0;
 
-    // default example
-    simplyCountdown('.simply-countdown-one', {
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate()
-    });
+        // IST offset from UTC
+        var istOffsetHours = 5;
+        var istOffsetMinutes = 30;
 
-    //jQuery example
-    $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
-        enableUtc: false
-    });
-</script>
+        // Convert IST to UTC
+        var utcHour = targetHour - istOffsetHours;
+        var utcMinute = targetMinute - istOffsetMinutes;
+
+        // Create the target date in UTC
+        var targetDateUTC = new Date(Date.UTC(targetYear, targetMonth - 1, targetDay, utcHour, utcMinute, targetSecond));
+
+        // Initialize Simply Countdown with the correct UTC values
+        simplyCountdown('.simply-countdown-one', {
+            year: targetDateUTC.getUTCFullYear(),
+            month: targetDateUTC.getUTCMonth() + 1,
+            day: targetDateUTC.getUTCDate(),
+            hours: targetDateUTC.getUTCHours(),
+            minutes: targetDateUTC.getUTCMinutes(),
+            seconds: targetDateUTC.getUTCSeconds(),
+            enableUtc: true // Ensures UTC values are used
+        });
+
+        // jQuery example
+        $('#simply-countdown-losange').simplyCountdown({
+            year: targetDateUTC.getUTCFullYear(),
+            month: targetDateUTC.getUTCMonth() + 1,
+            day: targetDateUTC.getUTCDate(),
+            hours: targetDateUTC.getUTCHours(),
+            minutes: targetDateUTC.getUTCMinutes(),
+            seconds: targetDateUTC.getUTCSeconds(),
+            enableUtc: true // Ensures UTC values are used
+        });
+    </script>
 
 	</body>
 </html>
