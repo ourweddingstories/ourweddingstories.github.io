@@ -222,6 +222,15 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff !important;
 }
 
+#fh5co-event video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire background */
+    z-index: -1; /* Places the video behind other content */
+},
 #fh5co-counter,
 #fh5co-event,
 .fh5co-bg {
